@@ -188,5 +188,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 ![image](https://user-images.githubusercontent.com/90264578/210254865-edba084f-8e5a-4bd7-9c83-d15f7a9c1273.png)
 
 Файл-підключення до бази даних
+
 ![image](https://user-images.githubusercontent.com/90264578/210254905-acc38b23-0d5f-4222-b8fe-daff266b9d61.png)
 
