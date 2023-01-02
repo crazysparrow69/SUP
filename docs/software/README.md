@@ -176,3 +176,16 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 ## RESTfull сервіс для управління даними
 
+Головний файл server.js
+![image](https://user-images.githubusercontent.com/90264578/210254711-bc72747f-d195-4a3b-8438-4a7a6e733fc8.png)
+
+Файл-роутер
+![image](https://user-images.githubusercontent.com/90264578/210254768-306ce21c-dd0f-4752-b7ba-b93c30f639fc.png)
+
+Файл-контроллер
+![image](https://user-images.githubusercontent.com/90264578/210254837-6a0a6256-b244-466c-aa61-f656d7d28d8c.png)
+![image](https://user-images.githubusercontent.com/90264578/210254865-edba084f-8e5a-4bd7-9c83-d15f7a9c1273.png)
+
+Файл-підключення до бази даних
+![image](https://user-images.githubusercontent.com/90264578/210254905-acc38b23-0d5f-4222-b8fe-daff266b9d61.png)
+
