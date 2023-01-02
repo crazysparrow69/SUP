@@ -176,18 +176,126 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 ## RESTfull сервіс для управління даними
 
-Головний файл server.js
+# RESTfull сервіс для управління даними
 
-![image](https://user-images.githubusercontent.com/90264578/210254711-bc72747f-d195-4a3b-8438-4a7a6e733fc8.png)
+## Кореневий файл серверу
 
-Файл-роутер
-![image](https://user-images.githubusercontent.com/90264578/210254768-306ce21c-dd0f-4752-b7ba-b93c30f639fc.png)
+```js
+const db = require('./config/db_connection');
+const express = require('express');
+const app = express();
 
-Файл-контроллер
-![image](https://user-images.githubusercontent.com/90264578/210254837-6a0a6256-b244-466c-aa61-f656d7d28d8c.png)
-![image](https://user-images.githubusercontent.com/90264578/210254865-edba084f-8e5a-4bd7-9c83-d15f7a9c1273.png)
+// Global variables
+const PORT = 3500;
 
-Файл-підключення до бази даних
+// Built-in middleware for json
+app.use(express.json());
 
-![image](https://user-images.githubusercontent.com/90264578/210254905-acc38b23-0d5f-4222-b8fe-daff266b9d61.png)
+// Routes
+app.use('/api', require('./routes/apiRoute'));
+
+// Connection
+db.connect(() => app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)));
+```
+
+## Файл підключення до бази даних
+
+```js
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '564793',
+    database: 'sup'
+});
+
+module.exports = db;
+```
+
+##  Файл з роутером
+
+ ```js
+const express = require('express');
+const router = express.Router();
+const { getAllArtifacts, getOneArtifact, createNewArtifact, updateOneArtifact, deleteOneArtifact } = require('../controllers/apiController');
+
+router.get('/', getAllArtifacts)
+      .get('/:id', getOneArtifact)
+      .post('/', createNewArtifact)
+      .put('/:id', updateOneArtifact)
+      .delete('/:id', deleteOneArtifact);
+
+module.exports = router;
+
+ ```
+
+##  Файл контролерів для обробки запитів
+
+```js
+const db = require('../config/db_connection');
+
+const getAllArtifacts = (req, res) => {
+    const query = 'SELECT * FROM artifact';
+    db.query(query, (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.status(200).json(result);
+    });
+};
+
+const getOneArtifact = (req, res) => {
+    const query = `SELECT * FROM artifact WHERE id=${req.params.id}`;
+    db.query(query, (err, result) => {
+        if (err) return res.status(500).json(err);
+        if (result.length === 0) return res.sendStatus(404);
+        res.status(200).json(result);
+    });
+};
+
+const createNewArtifact = (req, res) => {
+    if (!req.body.name || !req.body.description) return res.status(400).json({ 'message': 'Name and description required' });
+
+    const query = 'INSERT INTO artifact SET ?';
+    const artifact = {
+        name: req.body.name,
+        description: req.body.description
+    };
+    db.query(query, artifact, (err) => {
+        if (err) return res.status(500).json(err);
+        res.status(201).json({ 'message': 'New artifact created' });
+    });
+};
+
+const updateOneArtifact = (req, res) => {
+    if (!req.body.name && !req.body.description) return res.status(204).json({ 'message': 'Name or description required' });
+
+    let query = '';
+    if (req.body.name) {
+        query = `UPDATE artifact SET name = '${req.body.name}' WHERE id = '${req.params.id}'`;
+        db.query(query, (err) => { if (err) return res.status(500).json(err) });
+    }
+    if (req.body.description) {
+        query = `UPDATE artifact SET description = '${req.body.description}' WHERE id = '${req.params.id}'`;
+        db.query(query, (err) => { if (err) return res.status(500).json(err) });
+    }
+
+    res.status(200).json({ 'message': 'Artifact updated' });
+};
+
+const deleteOneArtifact = (req, res) => {
+    const query = `DELETE FROM artifact WHERE id=${req.params.id}`;
+    db.query(query, (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.status(200).json({ 'message': 'Artifact deleted' });
+    });
+};
+
+module.exports = { 
+    getAllArtifacts,
+    getOneArtifact,
+    createNewArtifact,
+    updateOneArtifact,
+    deleteOneArtifact
+};
+```
 
