@@ -177,6 +177,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 ## RESTfull сервіс для управління даними
 
 Головний файл server.js
+
 ![image](https://user-images.githubusercontent.com/90264578/210254711-bc72747f-d195-4a3b-8438-4a7a6e733fc8.png)
 
 Файл-роутер
