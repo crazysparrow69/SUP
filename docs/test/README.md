@@ -1,4 +1,5 @@
 # Тестування працездатності системи
+Використовувалось розширення для Visual Studio Code - Thunder Client.
 
 ## Отримання всіх артефактів
 ![image](https://user-images.githubusercontent.com/90264578/210409676-4ffcdf20-573b-4d72-9c31-2d8c9585dac3.png)
