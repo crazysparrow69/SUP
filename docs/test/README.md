@@ -7,10 +7,16 @@
 ## Отримання артефакту по айді
 ![image](https://user-images.githubusercontent.com/90264578/210409881-789420cc-cb52-4b4d-b8a1-5e183b411198.png)
 
+## Спроба отримання артефакту по айді, якого не існує
+![image](https://user-images.githubusercontent.com/90264578/210410952-ba25bae3-31d2-4113-9172-9acd3135d696.png)
+
 ## Створення нового артефакту
 ![image](https://user-images.githubusercontent.com/90264578/210409941-450baa06-8ca6-4077-aa80-476edf82ae1e.png)
 ### Перевірка
 ![image](https://user-images.githubusercontent.com/90264578/210410053-ba6a07b7-a227-441f-8232-a835e6c3de12.png)
+
+## Спроба створення нового артефакту з недостатніми даними
+![image](https://user-images.githubusercontent.com/90264578/210411212-e93aedd0-6b82-4331-8f9b-bda1db9c63e2.png)
 
 ## Зміна артефакту по айді
 ![image](https://user-images.githubusercontent.com/90264578/210410168-333b0cbc-3cb9-4803-aa83-8d40d4805ba0.png)
@@ -19,5 +25,5 @@
 
 ## Видалення артефакту по айді
 ![image](https://user-images.githubusercontent.com/90264578/210410274-8068ad25-6296-4290-84a0-c29ee58102e3.png)
-###Перевірка
+### Перевірка
 ![image](https://user-images.githubusercontent.com/90264578/210410332-7f1e83eb-a7f3-45af-8931-21b77f8b9d1a.png)
